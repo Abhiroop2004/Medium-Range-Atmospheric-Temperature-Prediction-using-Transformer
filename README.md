@@ -1,33 +1,29 @@
 # Generative-AI Course Project
-# 🌡️ Kolkata 7‑Day Temperature Forecasts with TimeXer
-.
+## 🌡️ Kolkata 7‑Day Temperature Forecasts with TimeXer
+
 > Daily maximum & minimum temperature predictions for Kolkata, India  
 > **Horizon:** 7 days | **Data:** 1975‑01‑01 → 2025‑04‑08 | **Model:** TimeXer Transformer
 .
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![Python](https://img.shields.io/badge/Python-3.10%2B-blue.svg)](https://www.python.org/)
 [![Model](https://img.shields.io/badge/Model-TimeXer-ff69b4.svg)](https://github.com/unit8co/TimeX)
-.
----
-.
+
 ## 1. Project Overview
 This repository contains code and notebooks to train and evaluate a **TimeXer** transformer for 7‑day ahead forecasting of daily **maximum** and **minimum** temperatures in Kolkata (22.57 °N, 88.36 °E).  
 Key goals:
-.
+
 * Serve as a reference implementation for long‑horizon weather forecasting with TimeXer. 
 * Provide reproducible benchmarks (RMSE, MAE, MAPE, R²) for each lead time (1 → 7 days).  
 * Offer a lightweight, deployable model for downstream analytics or alerting pipelines.  
 
----
 
 ## 2. Data
-.
+
 | Source | Period | Frequency | Variables |
 |--------|--------|-----------|-----------|
 | [Open‑Meteo Historical Weather API](https://open-meteo.com/en/docs/historical-weather-api) | 1975‑01‑01 → 2025‑04‑08 | Daily | `temperature_2m_max`, `temperature_2m_min` |
 
 
- ---
 
 ## 3. Model
 
@@ -56,9 +52,6 @@ model = TimeXer(
 )
 ```
 
-*Full hyper‑parameter exploration is in `notebooks/02_model_training.ipynb`.*  
----
-
 ## 4. Training & Evaluation
 
 | Split | Dates | Samples |
@@ -74,7 +67,6 @@ lead‑2 RMSE, MAE, MAPE, R²
 …
 lead‑7 RMSE, MAE, MAPE, R²
 ```
----
 
 ## 6. Results
 
