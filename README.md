@@ -3,7 +3,7 @@
 
 > Daily maximum & minimum temperature predictions for Kolkata, India  
 > **Horizon:** 7 days | **Data:** 1975‑01‑01 → 2025‑04‑08 | **Model:** TimeXer Transformer
-.
+
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![Python](https://img.shields.io/badge/Python-3.10%2B-blue.svg)](https://www.python.org/)
 [![Model](https://img.shields.io/badge/Model-TimeXer-ff69b4.svg)](https://github.com/unit8co/TimeX)
