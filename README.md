@@ -9,7 +9,7 @@
 [![Model](https://img.shields.io/badge/Model-TimeXer-ff69b4.svg)](https://github.com/unit8co/TimeX)
 
 ## 1. Project Overview
-This repository contains code and notebooks to train and evaluate a **TimeXer** transformer for 7‑day ahead forecasting of daily **maximum** and **minimum** temperatures in Kolkata (22.57 °N, 88.36 °E).  
+This repository contains code and notebooks to train and evaluate **TimeXer** transformer model for 7‑day ahead forecasting of daily **maximum** and **minimum** temperatures in Kolkata (22.57 °N, 88.36 °E).  
 Key goals:
 
 * Serve as a reference implementation for long‑horizon weather forecasting with TimeXer. 
@@ -28,7 +28,7 @@ Key goals:
 ## 3. Model
 
 ```python
-from timexer import TimeXer
+from neuralforecast.models import TimeXer
 from neuralforecast.losses.pytorch import MSE, MAE
 
 model = TimeXer(
@@ -80,36 +80,20 @@ lead‑7 RMSE, MAE, MAPE, R²
 ---
 
 ## 7. Re‑using the Model
-.
+
 ```python
-from timexer import TimeXer
-import torch
-.
-model = TimeXer.load_from_checkpoint("artifacts/model.ckpt")
-history = df.tail(30)               # last 30 days of max/min temps
-forecast = model.predict(history)   # numpy array shape (7, 2)
+from neuralforecast.core import NeuralForecast
+nf_max = NeuralForecast.load(path='./models/model_max/')
+nf_min = NeuralForecast.load(path='./models/model_min/')
+date_input = int(data.index[data['time'] == user_input][0])
+input_window = data.iloc[date_input - 30 : date_input]
+predict_max = nf_max.predict(df=input_window, verbose=False)
+predict_min = nf_min.predict(df=input_window, verbose=False)
 ```
 
----
+## 8. Streamlit Application
 
-## 8. Repository Structure
-
-```
- .
- ├── data/
- │   ├── raw/                # cached API responses
- │   └── processed/          # cleaned parquet files
- ├── notebooks/
- │   ├── 01_data_download.ipynb
- │   ├── 02_model_training.ipynb
- │   └── 03_evaluation.ipynb
- ├── src/
- │   ├── download_data.py
- │   ├── train_model.py
- │   └── evaluate.py
- ├── artifacts/              # checkpoints, metrics, plots
- └── README.md
- ```
+![alt text](<Screenshot 2025-04-24 142442.png>)
 
 ---
 
